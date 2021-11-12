@@ -1,27 +1,22 @@
-const { MongoClient } = require("mongodb")
+const { MongoClient } = require("mongodb");
 
-const config = require("./config")
-const mongoUrl = 
-    process.env.NODE_ENV === "production" 
-        ? config.DB_URL.prod 
-        : config.DB_URL.dev
+const { DB_NAME, DB_URL } = require("./config");
 
-const client = new MongoClient(mongoUrl, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-})
+const client = new MongoClient(DB_URL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
 
 async function connect() {
-    try {
-        // Connect to the MongoDB
-        await client.connect();
-        console.log("Connected to MongoDB")
+  try {
+    // Connect to the MongoDB
+    await client.connect();
+    console.log("Connected to MongoDB");
 
-        const db = client.db(config.DB_NAME)
-        return db
-    } catch (e) {
-        console.error(e);
-    }
+    return client.db(DB_NAME);
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 module.exports = connect;
