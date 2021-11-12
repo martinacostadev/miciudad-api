@@ -13,7 +13,7 @@ const port = process.env.PORT || 8080;
 app.use(cors());
 
 app.listen(port, () => {
-  console.log(`Runing on port: ${port}`);
+    console.log(`Runing on port: ${port}`);
 });
 
 module.export = app;
