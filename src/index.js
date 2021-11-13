@@ -1,14 +1,21 @@
-require('dotenv').config()
-const express = require('express');
+require('dotenv');
+const morgan = require('morgan');
+const helmet = require('helmet');
 const cors = require('cors');
+const express = require('express');
 const app = express();
+const port = process.env.PORT || 3000;
 
-const port = process.env.PORT || 8080;
+const lostItems = require('./routes/lostItems');
 
+// Middlewares
+app.use(morgan('dev'));
+app.use(helmet());
 app.use(cors());
 
-app.listen(port, () => {
-    console.log(`Runing on port: ${port}`);
-})
+// Routes
+app.use(lostItems);
 
-module.export = app;
+app.listen(port, () => {
+    console.log(`Listening at port ${ port }`);
+});
