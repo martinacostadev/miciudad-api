@@ -9,6 +9,11 @@ dotenv.config({ path: "./config.env" });
 
 const port = process.env.PORT || 8080;
 
+// BODY PARSER, READING DATA FROM BODY INTO req.body
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: true, limit: '1mb' }));
+
+
 app.use('/api/v1/extravios', lostItemsRouter);
 
 
