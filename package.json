@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "check-format": "prettier --check .",
+    "format": "prettier --write .",
+    "lint": "eslint .",
     "start": "cross-env NODE_ENV=production node src/index.js",
     "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,6 +30,10 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "nodemon": "^2.0.15"
+    "eslint": "8.3.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.25.3",
+    "nodemon": "^2.0.15",
+    "prettier": "2.4.1"
   }
 }
