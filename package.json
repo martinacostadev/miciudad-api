@@ -22,12 +22,12 @@
   "homepage": "https://github.com/martindevaluado/miciudad-api#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongodb": "^4.1.4"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
     "nodemon": "^2.0.15"
   }
 }
