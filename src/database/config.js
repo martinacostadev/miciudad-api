@@ -1,6 +1,10 @@
 const config = {
-    DB_NAME: process.env.DB_NAME,
-    DB_URL: `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}`,
+  DB_NAME: 'miciudad',
+  DB_URL: {
+    dev: 'mongodb://localhost:27017',
+    // TODO: set up correct production url
+    prod: 'mongodb+srv://user:password@cluster0.7cpxz.mongodb.net/posts?retryWrites=true&w=majority',
+  },
 };
 
 module.exports = config;
