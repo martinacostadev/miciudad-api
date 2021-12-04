@@ -5,15 +5,10 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const dotenv = require("dotenv");
-const env = process.env.NODE_ENV;
 const mongoose = require("mongoose");
+require('dotenv').config()
 
 const lostItemsRouter = require('./routes/lostItemsRoutes');
-
-dotenv.config({ path: "./config.env" });
-
-const envFile = env ? `.env.${env}` : ".env";
-dotenv.config({ path: envFile });
 
 // BODY PARSER, READING DATA FROM BODY INTO req.body
 app.use(express.json({ limit: '1mb' }));
@@ -28,9 +23,9 @@ app.use(cors());
 // Routes
 app.use('/api/v1/extravios', lostItemsRouter);
 
-const DB = process.env.DATABASE.replace(
+const DB = process.env.DB_NAME.replace(
   "<PASSWORD>",
-  process.env.DATABASE_PASSWORD
+  process.env.DB_PASSWORD
 );
 
 mongoose
