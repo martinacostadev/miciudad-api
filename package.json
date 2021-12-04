@@ -2,6 +2,7 @@
   "name": "miciudad-api",
   "version": "1.0.0",
   "description": "",
+  "private": "true",
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node src/index.js",
@@ -14,7 +15,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/martindevaluado/miciudad-api/issues"
   },
