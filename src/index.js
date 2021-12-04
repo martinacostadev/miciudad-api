@@ -5,24 +5,49 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const dotenv = require("dotenv");
-
 const env = process.env.NODE_ENV;
+const mongoose = require("mongoose");
+
+const lostItemsRouter = require('./routes/lostItemsRoutes');
+
+dotenv.config({ path: "./config.env" });
 
 const envFile = env ? `.env.${env}` : ".env";
 dotenv.config({ path: envFile });
 
-const lostItems = require('./routes/lostItems');
+// BODY PARSER, READING DATA FROM BODY INTO req.body
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
 // Middlewares
 app.use(morgan('dev'));
 app.use(helmet());
+
 app.use(cors());
 
 // Routes
-app.use(lostItems);
+app.use('/api/v1/extravios', lostItemsRouter);
+
+const DB = process.env.DATABASE.replace(
+  "<PASSWORD>",
+  process.env.DATABASE_PASSWORD
+);
+
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((con) => {
+    console.log("DB Connection Successful");
+  })
+  .catch((err) => {
+    console.log(`db error ${err.message}`);
+    process.exit(-1);
+  });
 
 app.listen(port, () => {
-    console.log(`Listening at port ${ port }`);
+  console.log(`Running on port: ${port}`);
 });
 
 module.export = app;

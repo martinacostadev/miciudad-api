@@ -1,0 +1,4 @@
+NODE_ENV=
+PORT=
+DATABASE=mongodb+srv://miciudad:<PASSWORD>@cluster0.mcsmv.mongodb.net/miciudad?retryWrites=true&w=majority
+DATABASE_PASSWORD=
