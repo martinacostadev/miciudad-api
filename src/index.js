@@ -31,8 +31,8 @@ mongoose
 
     app.use('/api/v1', indexRoutes);
 
-    app.listen(config.db.port, () => {
-      console.log(`Running on port: ${config.db.port}`);
+    app.listen(config.app.port, () => {
+      console.log(`Running on port: ${config.app.port}`);
     });
     console.log('DB Connection Successful');
   })
