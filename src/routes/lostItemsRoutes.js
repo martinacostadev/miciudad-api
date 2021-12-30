@@ -1,15 +1,17 @@
-const express = require("express");
-const lostItemsController = require("../controllers/lostItemsController");
-const router = express.Router();
+const { Router } = require('express');
+
+const lostItemsController = require('../controllers/lostItemsController');
+
+const router = Router();
 
 router
-  .route("/")
+  .route('/')
   .get(lostItemsController.getLostItems)
-  .post(lostItemsController.postLostItem);
+  .post(lostItemsController.postLostItems);
 
 router
-  .route("/:id")
-  .put(lostItemsController.updateLostItem)
-  .delete(lostItemsController.deleteLostItem);
+  .route('/:id')
+  .put(lostItemsController.updateLostItems)
+  .delete(lostItemsController.deleteLostItems);
 
 module.exports = router;

@@ -1,9 +1,28 @@
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+const {
+  APP_PORT,
+  DB_USER,
+  DB_PASSWORD,
+  DB_HOST,
+  DB_NAME,
+  DB_URL_DEV,
+  DB_URL_PROD,
+} = process.env;
+
 const config = {
-  DB_NAME: 'miciudad',
-  DB_URL: {
-    dev: 'mongodb://localhost:27017',
-    // TODO: set up correct production url
-    prod: 'mongodb+srv://user:password@cluster0.7cpxz.mongodb.net/posts?retryWrites=true&w=majority',
+  app: {
+    port: APP_PORT,
+  },
+  db: {
+    user: DB_USER,
+    password: DB_PASSWORD,
+    host: DB_HOST,
+    name: DB_NAME,
+    dev: DB_URL_DEV,
+    prod: DB_URL_PROD,
   },
 };
 
