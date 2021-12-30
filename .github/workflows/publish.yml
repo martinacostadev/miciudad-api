@@ -13,8 +13,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 'lts/fermium'
-      - run: npm --prefix ./app install --no-save prettier
-      - run: npm --prefix ./app run check-format
+      - run: npm install --no-save prettier
+      - run: npm run check-format
 
   eslint:
     runs-on: ubuntu-latest
@@ -23,5 +23,5 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 'lts/fermium'
-      - run: npm --prefix ./app install --no-save eslint eslint-config-airbnb-base eslint-plugin-import
-      - run: npm --prefix ./app run lint
+      - run: npm install --no-save eslint eslint-config-airbnb-base eslint-plugin-import
+      - run: npm run lint
