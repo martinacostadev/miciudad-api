@@ -25,7 +25,7 @@ const lostItemsSchema = new mongoose.Schema(
   {
     timestamps: true,
     versionKey: false,
-  },
+  }
 );
 
 const lostItems = mongoose.model('lostItems', lostItemsSchema);
