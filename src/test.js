@@ -1,5 +1,5 @@
 const variable = {
-  message: "hola"
-}
+  message: 'hola',
+};
 
-// console.log(variable.message)
+console.log(variable.message);
