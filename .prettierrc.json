@@ -1,7 +1,6 @@
 {
   "arrowParens": "always",
   "bracketSpacing": true,
-  "endOfLine": "crlf",
   "printWidth": 80,
   "quoteProps": "as-needed",
   "requirePragma": false,
