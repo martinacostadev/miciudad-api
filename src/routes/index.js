@@ -1,9 +1,9 @@
 const { Router } = require('express');
 
-const lostItemsRoutes = require('./lostItemsRoutes');
+const extraviosRoute = require('./extraviosRoute');
 
 const routes = Router();
 
-routes.use('/v1/extravios', lostItemsRoutes);
+routes.use('/extravios', extraviosRoute);
 
 module.exports = routes;
