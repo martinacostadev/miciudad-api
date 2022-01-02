@@ -8,10 +8,8 @@ const config = require('./database/config');
 
 const indexRoutes = require('./routes');
 
-const DB = config.db.name.replace('<PASSWORD>', config.db.password);
-
 mongoose
-  .connect(DB, {
+  .connect(config.db.mongoUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -29,14 +27,14 @@ mongoose
     app.use(morgan('dev'));
     app.use(cors());
 
-    app.use('/api/v1', indexRoutes);
+    app.use('/v1', indexRoutes);
 
     app.listen(config.app.port, () => {
       console.log(`Running on port: ${config.app.port}`);
     });
     console.log('DB Connection Successful');
   })
-  .catch((err) => {
-    console.log(`db error ${err.message}`);
+  .catch((error) => {
+    console.log(`The connection has failed, ${error}`);
     process.exit(-1);
   });
