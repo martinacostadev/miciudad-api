@@ -3,7 +3,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 require('dotenv').config()
