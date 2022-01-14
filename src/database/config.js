@@ -2,7 +2,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const { PORT, MONGO_URL } = process.env;
+const { PORT, MONGO_URL, SECRETOPRIVATEKEY} = process.env;
 
 const config = {
   db: {
@@ -11,6 +11,9 @@ const config = {
   app: {
     port: PORT,
   },
+  jwt: {
+    key: SECRETOPRIVATEKEY,
+  }
 };
 
 module.exports = config;
