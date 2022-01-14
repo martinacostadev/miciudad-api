@@ -3,9 +3,7 @@ const { MongoClient } = require('mongodb');
 const config = require('./config');
 
 const mongoUrl =
-  process.env.NODE_ENV === 'production'
-    ? config.DB_URL.prod
-    : config.DB_URL.dev;
+  process.env.NODE_ENV === 'production' ? config.db.prod : config.db.dev;
 
 const client = new MongoClient(mongoUrl, {
   useUnifiedTopology: true,
@@ -18,7 +16,7 @@ async function connect() {
     await client.connect();
     console.log('Connected to MongoDB');
 
-    const db = client.db(config.DB_NAME);
+    const db = client.db(config.db.name);
     return db;
   } catch (e) {
     console.error(e);

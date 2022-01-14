@@ -1,48 +1,41 @@
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
+const mongoose = require('mongoose');
 const express = require('express');
-const app = express();
-const port = process.env.PORT || 8080;
-const dotenv = require("dotenv");
-const mongoose = require("mongoose");
 require('dotenv').config()
 
-const lostItemsRouter = require('./routes/lostItemsRoutes');
+const config = require('./database/config');
 
-// BODY PARSER, READING DATA FROM BODY INTO req.body
-app.use(express.json({ limit: '1mb' }));
-app.use(express.urlencoded({ extended: true, limit: '1mb' }));
-
-// Middlewares
-app.use(morgan('dev'));
-app.use(helmet());
-
-app.use(cors());
-
-// Routes
-app.use('/api/v1/extravios', lostItemsRouter);
-
-const DB = process.env.DB_NAME.replace(
-  "<PASSWORD>",
-  process.env.DB_PASSWORD
-);
+const indexRoutes = require('./routes');
 
 mongoose
-  .connect(DB, {
+  .connect(config.db.mongoUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then((con) => {
-    console.log("DB Connection Successful");
+  .then(() => {
+    const app = express();
+    app.use(
+      express.urlencoded({
+        extended: true,
+      })
+    );
+
+    app.use(express.json());
+
+    app.use(helmet());
+    app.use(morgan('dev'));
+    app.use(cors());
+
+    app.use('/v1', indexRoutes);
+
+    app.listen(config.app.port, () => {
+      console.log(`Running on port: ${config.app.port}`);
+    });
+    console.log('DB Connection Successful');
   })
-  .catch((err) => {
-    console.log(`db error ${err.message}`);
+  .catch((error) => {
+    console.log(`The connection has failed, ${error}`);
     process.exit(-1);
   });
-
-app.listen(port, () => {
-  console.log(`Running on port: ${port}`);
-});
-
-module.export = app;
